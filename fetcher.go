@@ -190,7 +190,7 @@ func (this *Fetcher) checkFetcherJS() (string, error) {
 		paths = strings.Split(str, ";")
 	}
 	for _, path := range paths {
-		fetcherJSPath := path + "/src/github.com/nladuo/go-phantomjs-fetcher/phantomjs_fetcher.js"
+		fetcherJSPath := path + "/src/github.com/admpub/go-phantomjs-fetcher/phantomjs_fetcher.js"
 		if this.exist(fetcherJSPath) {
 			return fetcherJSPath, nil
 		}
