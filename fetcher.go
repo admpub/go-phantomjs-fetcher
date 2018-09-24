@@ -65,6 +65,7 @@ func NewFetcher(port int, option *Option) (*Fetcher, error) {
 			Timeout:        120,
 			UseGzip:        true,
 			AllowRedirects: true,
+			Method:         `GET`,
 		}
 	}
 
@@ -112,13 +113,13 @@ type postData struct {
 //send httpGet request by phantomjs with the js_script and some option like headers
 func (this *Fetcher) GetWithOption(url, js_script, js_run_at string, option *Option) (*Response, error) {
 	_postData := postData{
-		LoadImages:     false,
+		LoadImages:     option.LoadImages,
 		Url:            url,
 		Headers:        option.Headers,
 		Timeout:        option.Timeout,
 		UseGzip:        option.UseGzip,
 		AllowRedirects: option.AllowRedirects,
-		Method:         "GET",
+		Method:         option.Method,
 		JsScript:       js_script,
 		JsRunAt:        js_run_at,
 	}
@@ -131,17 +132,17 @@ func (this *Fetcher) GetWithOption(url, js_script, js_run_at string, option *Opt
 	buffer := bytes.NewBuffer(data)
 	res, err := http.Post("http://localhost:"+this.ProxyPort, "application/json;charset=utf-8", buffer)
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 
-	byte_data, err := ioutil.ReadAll(res.Body)
+	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 	res.Body.Close()
 	var response Response
 
-	err = json.Unmarshal(byte_data, &response)
+	err = json.Unmarshal(body, &response)
 	if err != nil {
 		return nil, err
 	}

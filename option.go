@@ -8,4 +8,6 @@ type Option struct {
 	Time           float64
 	JsScriptResult string
 	FetcherJsPath  string
+	Method         string
+	LoadImages     bool
 }
