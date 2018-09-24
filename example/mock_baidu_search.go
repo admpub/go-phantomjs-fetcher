@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
-	"github.com/PuerkitoBio/goquery"
-	"github.com/nladuo/go-phantomjs-fetcher"
 	"strings"
+
+	"github.com/PuerkitoBio/goquery"
+	"github.com/admpub/go-phantomjs-fetcher"
 )
 
 func main() {
