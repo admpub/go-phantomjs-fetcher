@@ -123,6 +123,9 @@ func (this *Fetcher) GetWithOption(url, js_script, js_run_at string, option *Opt
 		JsScript:       js_script,
 		JsRunAt:        js_run_at,
 	}
+	if len(_postData.Method) == 0 {
+		_postData.Method = `GET`
+	}
 
 	data, err := json.Marshal(&_postData)
 	if err != nil {
