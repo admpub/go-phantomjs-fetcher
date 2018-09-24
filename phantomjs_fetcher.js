@@ -192,9 +192,9 @@ if (system.args.length !== 2) {
   });
 
   if (service) {
-    console.log('Web server running on port ' + port);
+    console.log('[PhantomJS] Web server running on port ' + port);
   } else {
-    console.log('Error: Could not create web server listening on port ' + port);
+    console.log('[PhantomJS] Error: Could not create web server listening on port ' + port);
     phantom.exit();
   }
 }
